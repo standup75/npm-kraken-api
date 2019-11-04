@@ -12,7 +12,7 @@
   "contributors": [],
   "license": "MIT",
   "dependencies": {
-    "got": "^7.1.0",
+    "node-fetch": "^2.6.0",
     "qs": ">=6.4.0"
   },
   "repository": {

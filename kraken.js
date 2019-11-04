@@ -1,4 +1,4 @@
-const got    = require('got');
+const fetch  = require('node-fetch');
 const crypto = require('crypto');
 const qs     = require('qs');
 
@@ -31,6 +31,8 @@ const getMessageSignature = (path, request, secret, nonce) => {
 const rawRequest = async (url, headers, data, timeout) => {
 	// Set custom User-Agent string
 	headers['User-Agent'] = 'Kraken Javascript API Client';
+	headers['Content-Type'] = 'application/json'
+	headers['Accept'] = 'application/json'
 
 	const options = { headers, timeout };
 
@@ -39,8 +41,8 @@ const rawRequest = async (url, headers, data, timeout) => {
 		body   : qs.stringify(data),
 	});
 
-	const { body } = await got(url, options);
-	const response = JSON.parse(body);
+	let response = await fetch(url, options);
+	response = await response.json();
 
 	if(response.error && response.error.length) {
 		const error = response.error
