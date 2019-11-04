@@ -38,7 +38,7 @@ const rawRequest = async (url, headers, data, timeout) => {
 
 	Object.assign(options, {
 		method : 'POST',
-		body   : qs.stringify(data),
+		body   : JSON.stringify(data),
 	});
 
 	let response = await fetch(url, options);
